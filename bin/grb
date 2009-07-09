@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+#
+# Copyright (c) 2009. GPL3.
+# Author: Zhang Jinzhu
+
+$LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__) + "/../lib"))
+
+# easy debug
+if ARGV.delete('--debug')
+  ['rubygems','ruby-debug'].each {|x| require x}
+else
+  def debugger;end
+end
+
+require "version"
+require "grb"
+
+opt = {
+ :command => ARGV[0] || 'help',
+ :branch => branch  =  (ARGV[1] || Grb.get_current_branch),
+ :branch_ => ARGV[2] || branch,
+}
+
+Grb.parse(opt)
