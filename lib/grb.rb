@@ -4,7 +4,7 @@ class Grb
 
   COMMANDS = {
     :new     => {
-      :desc  => "git new  [branch]",
+      :desc  => "grb new  [branch]",
       :commands => [
         '"#{GIT} push #{origin} #{current_branch}:refs/heads/#{branch}"',
         '"#{GIT} fetch #{origin}"',
@@ -14,7 +14,7 @@ class Grb
     },
 
     :push     => {
-      :desc  => "git push [branch] (default current_branch)",
+      :desc  => "grb push [branch]  (default current_branch)",
       :commands => [
         '"#{GIT} push #{origin} #{branch}:refs/heads/#{branch}"',
         '"#{GIT} fetch #{origin}"',
@@ -25,7 +25,7 @@ class Grb
     },
 
     :mv     => {
-      :desc  => "git mv   [branch1] [branch2]\n\tgit mv   [branch] (default current_branch)",
+      :desc  => "grb mv   [branch1] [branch2]\n\tgrb mv   [branch]  (default current_branch)",
       :commands => [
         ' if(branch != branch_)
            "#{GIT} push #{origin} #{branch}:refs/heads/#{branch_}
@@ -46,7 +46,7 @@ class Grb
     },
 
     :rm     => {
-      :desc  => "git rm   [branch] (default current_branch)",
+      :desc  => "grb rm   [branch]  (default current_branch)",
       :commands => [
         '"#{GIT} push #{origin} :refs/heads/#{branch}"',
         '"#{GIT} checkout master" if current_branch == branch',
@@ -55,7 +55,7 @@ class Grb
     },
 
     :pull      => {
-      :desc  => "git pull [branch] (default current_branch)",
+      :desc  => "grb pull [branch]  (default current_branch)",
       :commands => [
         '"#{GIT} fetch #{origin}"',
         'if local_branches.include?(branch) 
