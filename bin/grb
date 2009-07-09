@@ -17,7 +17,7 @@ require "grb"
 
 opt = {
  :command => ARGV[0] || 'help',
- :branch => branch  =  (ARGV[1] || Grb.get_current_branch),
+ :branch => branch   =  (ARGV[1] || Grb.get_current_branch),
  :branch_ => ARGV[2] || branch,
 }
 

@@ -4,6 +4,7 @@ class Grb
 
   COMMANDS = {
     :new     => {
+      :desc  => "git new  [branch]",
       :commands => [
         '"#{GIT} push #{origin} #{current_branch}:refs/heads/#{branch}"',
         '"#{GIT} fetch #{origin}"',
@@ -13,6 +14,7 @@ class Grb
     },
 
     :push     => {
+      :desc  => "git push [branch] (default current_branch)",
       :commands => [
         '"#{GIT} push #{origin} #{branch}:refs/heads/#{branch}"',
         '"#{GIT} fetch #{origin}"',
@@ -23,6 +25,7 @@ class Grb
     },
 
     :mv     => {
+      :desc  => "git mv   [branch1] [branch2]\n\tgit mv   [branch] (default current_branch)",
       :commands => [
         ' if(branch != branch_)
            "#{GIT} push #{origin} #{branch}:refs/heads/#{branch_}
@@ -43,6 +46,7 @@ class Grb
     },
 
     :rm     => {
+      :desc  => "git rm   [branch] (default current_branch)",
       :commands => [
         '"#{GIT} push #{origin} :refs/heads/#{branch}"',
         '"#{GIT} checkout master" if current_branch == branch',
@@ -51,6 +55,7 @@ class Grb
     },
 
     :pull      => {
+      :desc  => "git pull [branch] (default current_branch)",
       :commands => [
         '"#{GIT} fetch #{origin}"',
         'if local_branches.include?(branch) 
@@ -69,7 +74,7 @@ class Grb
 
       COMMANDS[opt[:command].to_sym][:commands].map {|x| exec_cmd(eval(x))}
     else
-      puts opt[:command] + ' FALSE'
+     help 
     end
   end
 
@@ -79,15 +84,16 @@ class Grb
     system("#{str}")
   end
 
-  def self.help(*args)
-    #TODO
-  end
-
   def self.get_current_branch
     (`git branch 2> /dev/null | grep '^\*'`).gsub(/\W/,'')
   end
 
   def self.local_branches
    (`git branch -l`).split(/\n/).map{|x| x.gsub(/\W/,'')}
+  end
+
+  def self.help(*args)
+    puts "USAGE:"
+    COMMANDS.values.map {|x| puts "\t" + x[:desc]}
   end
 end
