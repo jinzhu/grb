@@ -80,7 +80,7 @@ class Grb
 
   def self.exec_cmd(str)
     return true unless str
-    puts("\e[031m" + str + "\e[0m")
+    puts("\e[031m" + str.gsub(/^\s*/,'') + "\e[0m")
     system("#{str}")
   end
 
