@@ -1,17 +1,22 @@
 = GRB
-
   re-implement git_remote_branch [http://github.com/webmat/git_remote_branch] for cleaner,simpler,stronger!
 
 == USAGE:
-	grb pull [branch]  (default current_branch)
-	grb mv   [branch1] [branch2]
-	grb mv   [branch]  (default current_branch)
-	grb push [branch]  (default current_branch)
-	grb rm   [branch]  (default current_branch)
-	grb new  [branch]
+  * rename `branch1` to `branch2`
+    $ grb mv   [branch1] [branch2] [--explain]
+  * rename current branch to `branch`
+    $ grb mv branch [--explain]
+  * delete branch `branch`,default current_branch
+    $ grb rm [branch] [--explain]
+  * pull branch `branch`,default current_branch
+    $ grb pull [branch] [--explain]
+  * push branch `branch`, default current_branch
+    $ grb push [branch] [--explain]
+  * create new branch `branch`
+    $ grb new [branch] [--explain]
 
 Copyright (c) 2009  GPL3
 
-  Author : Jinzhu Zhang
-  Web    : http://www.zhangjinzhu.com
-  Email  : wosmvp (no-spam) gmail (no-spam) com
+Author : Jinzhu Zhang
+Web    : http://www.zhangjinzhu.com
+Email  : wosmvp (no-spam) gmail (no-spam) com
