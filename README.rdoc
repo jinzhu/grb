@@ -1,6 +1,9 @@
 = GRB
   re-implement git_remote_branch [http://github.com/webmat/git_remote_branch] for cleaner,simpler,stronger!
 
+== Install:
+  $ sudo gem install jinzhu-grb
+
 == USAGE:
   * rename `branch1` to `branch2`
     $ grb mv   [branch1] [branch2] [--explain]
