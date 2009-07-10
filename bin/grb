@@ -15,6 +15,8 @@ end
 require "version"
 require "grb"
 
+EXPLAIN = ARGV.delete('--explain')
+
 opt = {
  :command => ARGV[0] || 'help',
  :branch => branch   =  (ARGV[1] || Grb.get_current_branch),

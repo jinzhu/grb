@@ -4,7 +4,7 @@ class Grb
 
   COMMANDS = {
     :new     => {
-      :desc  => "grb new  [branch]",
+      :desc  => "=> create new branch `branch`\ngrb new [branch] [--explain]",
       :commands => [
         '"#{GIT} push #{origin} #{current_branch}:refs/heads/#{branch}"',
         '"#{GIT} fetch #{origin}"',
@@ -14,7 +14,7 @@ class Grb
     },
 
     :push     => {
-      :desc  => "grb push [branch]  (default current_branch)",
+      :desc  => "=> push branch `branch`, default current_branch\ngrb push [branch] [--explain]",
       :commands => [
         '"#{GIT} push #{origin} #{branch}:refs/heads/#{branch}"',
         '"#{GIT} fetch #{origin}"',
@@ -25,7 +25,7 @@ class Grb
     },
 
     :mv     => {
-      :desc  => "grb mv   [branch1] [branch2]\n\tgrb mv   [branch]  (default current_branch)",
+      :desc  => "=> rename `branch1` to `branch2`\ngrb mv   [branch1] [branch2] [--explain]\n=> rename current branch to `branch`\ngrb mv branch [--explain]",
       :commands => [
         ' if(branch != branch_)
            "#{GIT} push #{origin} #{branch}:refs/heads/#{branch_}
@@ -46,7 +46,7 @@ class Grb
     },
 
     :rm     => {
-      :desc  => "grb rm   [branch]  (default current_branch)",
+      :desc  => "=> delete branch `branch`,default current_branch\ngrb rm [branch] [--explain]",
       :commands => [
         '"#{GIT} push #{origin} :refs/heads/#{branch}"',
         '"#{GIT} checkout master" if current_branch == branch',
@@ -55,7 +55,7 @@ class Grb
     },
 
     :pull      => {
-      :desc  => "grb pull [branch]  (default current_branch)",
+      :desc  => "=> pull branch `branch`,default current_branch\ngrb pull [branch] [--explain]",
       :commands => [
         '"#{GIT} fetch #{origin}"',
         'if local_branches.include?(branch) 
@@ -81,7 +81,7 @@ class Grb
   def self.exec_cmd(str)
     return true unless str
     puts("\e[031m" + str.gsub(/^\s*/,'') + "\e[0m")
-    system("#{str}")
+    system("#{str}") unless EXPLAIN
   end
 
   def self.get_current_branch
@@ -94,6 +94,6 @@ class Grb
 
   def self.help(*args)
     puts "USAGE:"
-    COMMANDS.values.map {|x| puts "\t" + x[:desc]}
+    COMMANDS.values.map {|x| puts x[:desc].gsub(/^(\W.*)$/,"\e[31m" + '\1' + "\e[0m").gsub(/^(\w.*)$/,'  $ \1')}
   end
 end
