@@ -65,8 +65,17 @@ class Grb
           "#{GIT} branch --track #{branch} #{origin}/#{branch}"
         end'
       ]
-    }
-  }
+    },
+
+    :track      => {
+      :desc  => "=> track branch\ngit track `branch` [--explain]",
+      :commands => [
+        '"#{GIT} fetch #{origin}"',
+        '"#{GIT} branch --track #{branch} origin/#{branch}"',
+        '"#{GIT} checkout #{branch}"'
+        ]
+     }
+   }
 
   def self.parse(opt)
     if COMMANDS.keys.include?(opt[:command].to_sym)
