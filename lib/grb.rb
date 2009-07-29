@@ -63,7 +63,9 @@ class Grb
           "#{GIT} config branch.#{branch}.merge refs/heads/#{branch}"
         else
           "#{GIT} branch --track #{branch} #{origin}/#{branch}"
-        end'
+        end',
+        '"#{GIT} checkout #{branch}" if current_branch != branch',
+        '"#{GIT} merge #{origin}/#{branch}"',
       ]
     },
 
