@@ -1,4 +1,6 @@
 class Grb
+  extend Git
+
   GIT    = ENV['GRB_GIT']    || 'git'
   ORIGIN = ENV['GRB_ORIGIN'] || 'origin'
 
