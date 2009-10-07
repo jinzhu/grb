@@ -17,7 +17,7 @@ require "grb"
 
 abort('Version: ' + Version::VERSION) if ARGV.delete('--version') || ARGV.delete('-v')
 
-EXPLAIN = ARGV.delete('--explain')
+EXPLAIN = ARGV.delete('--explain') || ARGV.delete('-e')
 
 opt = {
  :command => ARGV[0] || 'push',
