@@ -70,11 +70,19 @@ class Grb
     },
 
     :track      => {
-      :desc  => "=> track branch\ngit track `branch` [--explain]",
+      :desc  => "=> track branch\ngrb track `branch` [--explain]",
       :commands => [
         '"#{GIT} fetch #{origin}"',
         '"#{GIT} branch --track #{branch} origin/#{branch}"',
         '"#{GIT} checkout #{branch}"'
+        ]
+     },
+
+    :remote_add => {
+      :desc  => "=> add a remote repo\ngrb remote_add `name` `repo path` [--explain]",
+      :commands => [
+        '"#{GIT} remote add #{branch} #{branch_}"',
+        '"#{GIT} fetch #{branch}"'
         ]
      }
    }
@@ -96,11 +104,11 @@ class Grb
   end
 
   def self.get_current_branch
-    (`git branch 2> /dev/null | grep '^\*'`).gsub(/\W/,'')
+    (`#{GIT} branch 2> /dev/null | grep '^\*'`).gsub(/\W/,'')
   end
 
   def self.local_branches
-   (`git branch -l`).split(/\n/).map{|x| x.gsub(/\W/,'')}
+   (`#{GIT} branch -l`).split(/\n/).map{|x| x.gsub(/\W/,'')}
   end
 
   def self.help(*args)
