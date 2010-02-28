@@ -84,6 +84,13 @@ class Grb
         '"#{GIT} remote add #{branch} #{branch_}"',
         '"#{GIT} fetch #{branch}"'
         ]
+     },
+
+    :remote_rm => {
+      :desc  => "=> remove a remote repo\ngrb remote_rm `name` [--explain]",
+      :commands => [
+        '"#{GIT} remote rm #{branch}"',
+        ]
      }
    }
 
