@@ -1,14 +1,16 @@
 require 'rubygems'
-require 'rake'
-require 'echoe'
-require File.dirname(__FILE__) + '/lib/version'
 
-Echoe.new('grb', Version::VERSION) do |p|
-  p.description     = "grb"
-  p.url             = "http://www.zhangjinzhu.com"
-  p.author          = "Jinzhu Zhang"
-  p.email           = "wosmvp@gmail.com"
-  p.ignore_pattern  = ["TODO"]
-  p.rubyforge_name  = "grb"
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |gemspec|
+    gemspec.name = "grb"
+    gemspec.summary = "A tool to simplify working with remote branches"
+    gemspec.description = "A tool to simplify working with remote branches"
+    gemspec.email = "wosmvp@gmail.com"
+    gemspec.homepage = "http://github.com/jinzhu/grb"
+    gemspec.authors = ["Jinzhu Zhang"]
+    gemspec.files = ["VERSION"]
+  end
+rescue LoadError
+  puts "Jeweler not available. Install it with: gem install jeweler"
 end
-

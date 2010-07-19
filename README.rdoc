@@ -18,8 +18,7 @@
   * create new branch `branch`
     $ grb new [branch] [--explain]
 
-Copyright (c) 2009  GPL3
+Copyright (c) 2009-present GPL3
 
 Author : Jinzhu Zhang
-Web    : http://www.zhangjinzhu.com
-Email  : wosmvp (no-spam) gmail (no-spam) com
+Email  : wosmvp@gmail.com

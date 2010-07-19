@@ -1,27 +1,26 @@
 #!/usr/bin/env ruby
 #
-# Copyright (c) 2009. GPL3.
+# Copyright (c) 2009-present. GPL3.
 # Author: Zhang Jinzhu
 
 $LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__) + "/../lib"))
+require "grb"
 
-# easy debug
+# easy debugger
 if ARGV.delete('--debug')
   ['rubygems','ruby-debug'].each {|x| require x}
 else
   def debugger;end
 end
 
-require "version"
-require "grb"
 
-abort('Version: ' + Version::VERSION) if ARGV.delete('--version') || ARGV.delete('-v')
+abort('Version: ' + File.read(File.expand_path("../../VERSION",__FILE__))) if ARGV.delete('--version') || ARGV.delete('-v')
 
 EXPLAIN = ARGV.delete('--explain') || ARGV.delete('-e')
 
 opt = {
  :command => ARGV[0] || 'push',
- :branch => branch   =  (ARGV[1] || Grb.get_current_branch),
+ :branch  => branch  =  (ARGV[1] || Grb.get_current_branch),
  :branch_ => ARGV[2] || branch,
 }
 
