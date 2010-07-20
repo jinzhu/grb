@@ -1,14 +1,18 @@
 = GRB
-  re-implement git_remote_branch [http://github.com/webmat/git_remote_branch] for cleaner,simpler,stronger!
+  A tool to simplify working with remote branches.
 
 == Install:
-  $ sudo gem install jinzhu-grb
+  $ sudo gem install grb
 
 == USAGE:
   * rename `branch1` to `branch2`
     $ grb mv   [branch1] [branch2] [--explain]
   * rename current branch to `branch`
     $ grb mv branch [--explain]
+  * add a remote repo
+    $ grb remote_add `name` `repo path` [--explain]
+  * remove a remote repo
+    $ grb remote_rm `name` [--explain]
   * delete branch `branch`,default current_branch
     $ grb rm [branch] [--explain]
   * pull branch `branch`,default current_branch
@@ -18,7 +22,7 @@
   * create new branch `branch`
     $ grb new [branch] [--explain]
 
-Copyright (c) 2009-present GPL3
+Copyright (c) 2009-present MIT
 
 Author : Jinzhu Zhang
 Email  : wosmvp@gmail.com
