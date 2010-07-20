@@ -3,8 +3,7 @@
 # Copyright (c) 2009-present. MIT.
 # Author: Zhang Jinzhu
 
-$LOAD_PATH.unshift(File.expand_path(File.dirname(__FILE__) + "/../lib"))
-require "grb"
+require File.expand_path(File.dirname(__FILE__) + "/../lib/grb")
 
 # easy debugger
 if ARGV.delete('--debug')
@@ -12,7 +11,6 @@ if ARGV.delete('--debug')
 else
   def debugger;end
 end
-
 
 abort('Version: ' + File.read(File.expand_path("../../VERSION",__FILE__))) if ARGV.delete('--version') || ARGV.delete('-v')
 

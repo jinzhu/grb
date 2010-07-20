@@ -65,7 +65,7 @@ class Grb
           "#{GIT} branch --track #{branch} #{origin}/#{branch}"
         end',
         '"#{GIT} checkout #{branch}" if current_branch != branch',
-        '"#{GIT} merge #{origin}/#{branch}"',
+        '"#{GIT} rebase #{origin}/#{branch}"',
       ]
     },
 
