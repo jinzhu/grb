@@ -91,7 +91,14 @@ class Grb
       :commands => [
         '"#{GIT} remote rm #{branch}"',
         ]
-     }
+     },
+     
+    :prune => {
+      :desc => "=> prunes the remote branches from the list.",
+      :commands => [
+        '"#{GIT} remote prune #{origin}"',
+        ]
+    }
    }
 
   def self.parse(opt)

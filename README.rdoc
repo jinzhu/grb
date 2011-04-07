@@ -21,6 +21,8 @@
     $ grb push [branch] [--explain]
   * create new branch `branch`
     $ grb new [branch] [--explain]
+  * prune dead remote branches
+    $ grb prune
 
 Copyright (c) 2009-present MIT
 
