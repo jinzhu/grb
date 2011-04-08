@@ -58,7 +58,7 @@ class Grb
       :desc  => "=> pull branch `branch`,default current_branch\ngrb pull [branch] [--explain]",
       :commands => [
         '"#{GIT} fetch #{origin}"',
-        'if local_branches.include?(branch) 
+        'if local_branches.include?(branch)
           "#{GIT} config branch.#{branch}.remote #{origin}\n" +
           "#{GIT} config branch.#{branch}.merge refs/heads/#{branch}"
         else
@@ -92,7 +92,7 @@ class Grb
         '"#{GIT} remote rm #{branch}"',
         ]
      },
-     
+
     :prune => {
       :desc => "=> prunes the remote branches from the list\ngrb prune",
       :commands => [
@@ -107,7 +107,7 @@ class Grb
 
       COMMANDS[opt[:command].to_sym][:commands].map {|x| exec_cmd(eval(x))}
     else
-     help 
+      help
     end
   end
 
