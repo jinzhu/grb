@@ -94,7 +94,7 @@ class Grb
      },
      
     :prune => {
-      :desc => "=> prunes the remote branches from the list.",
+      :desc => "=> prunes the remote branches from the list\ngrb prune",
       :commands => [
         '"#{GIT} remote prune #{origin}"',
         ]
