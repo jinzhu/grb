@@ -14,7 +14,7 @@ func init() {
 
 			sh("{{git}} push {{origin}} :refs/heads/{{branch}}", values)
 			if getCurrentBranch() == args[0] {
-				sh("{{git}} checkout master")
+				sh("{{git}} checkout master", values)
 			}
 			sh("{{git}} branch -d {{branch}}", values)
 		},
