@@ -1,7 +1,9 @@
 package cmd
 
 import (
+	"bytes"
 	"fmt"
+	"html/template"
 	"os"
 	"os/exec"
 	"strings"
@@ -30,8 +32,39 @@ func Execute() {
 	}
 }
 
-func sh(cmd string, args ...interface{}) {
-	cmd = fmt.Sprintf(cmd, args...)
+func sh(str string, args map[string]string) {
+	var (
+		result  = bytes.NewBufferString("")
+		tmpl    = template.New("")
+		funcMap = template.FuncMap{}
+	)
+
+	if _, ok := args["git"]; !ok {
+		args["git"] = GitCmd
+	}
+
+	if _, ok := args["origin"]; !ok {
+		args["origin"] = origin
+	}
+
+	if _, ok := args["current_branch"]; !ok {
+		args["current_branch"] = getCurrentBranch()
+	}
+
+	for key, value := range args {
+		funcValue := value
+		funcMap[key] = func() string {
+			return funcValue
+		}
+	}
+
+	tmpl, err := tmpl.Funcs(funcMap).Parse(str)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+	tmpl.Execute(result, args)
+	cmd := result.String()
 
 	fmt.Println("command is ", cmd)
 	// splitting head => g++ parts => rest of the command

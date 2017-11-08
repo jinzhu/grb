@@ -10,16 +10,16 @@ func init() {
 		Short: "push branch `branch`, default current_branch",
 		Args:  cobra.MaximumNArgs(1),
 		Run: func(cmd *cobra.Command, args []string) {
-			branch := getCurrentBranch()
+			values := map[string]string{"branch": getCurrentBranch()}
 			if len(args) >= 1 {
-				branch = args[0]
+				values["branch"] = args[0]
 			}
 
-			sh("%v push %v %v:refs/heads/%v", GitCmd, origin, branch, branch)
-			sh("%v fetch %v", GitCmd, origin)
-			sh("%v config branch.%v.remote %v", GitCmd, branch, origin)
-			sh("%v config branch.%v.merge refs/heads/%v", GitCmd, branch, branch)
-			sh("%v checkout %v", GitCmd, branch)
+			sh("{{git}} push {{origin}} {{origin}}:refs/heads/{{branch}}", values)
+			sh("{{git}} fetch {{origin}}", values)
+			sh("{{git}} config branch.{{branch}}.remote {{branch}}", values)
+			sh("{{git}} config branch.{{branch}}.merge refs/heads/{{branch}}", values)
+			sh("{{git}} checkout {{branch}}", values)
 		},
 	})
 }
