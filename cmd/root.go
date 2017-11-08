@@ -8,6 +8,7 @@ import (
 	"os/exec"
 	"strings"
 
+	"github.com/fatih/color"
 	"github.com/spf13/cobra"
 )
 
@@ -66,17 +67,21 @@ func sh(str string, args map[string]string) {
 	tmpl.Execute(result, args)
 	cmd := result.String()
 
-	fmt.Println("command is ", cmd)
-	// splitting head => g++ parts => rest of the command
+	color.Red(cmd)
+
 	parts := strings.Fields(cmd)
 	head := parts[0]
 	parts = parts[1:len(parts)]
 
-	out, err := exec.Command(head, parts...).Output()
+	output, err := exec.Command(head, parts...).CombinedOutput()
+
 	if err != nil {
-		fmt.Printf("%s: ", err)
+		fmt.Printf("Error: %v\n", err)
 	}
-	fmt.Printf("%s\n", out)
+
+	if o := strings.TrimSpace(string(output)); o != "" {
+		fmt.Println(o)
+	}
 }
 
 func getCurrentBranch() string {
