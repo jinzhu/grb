@@ -15,7 +15,7 @@ func init() {
 				values["branch"] = args[0]
 			}
 
-			sh("{{git}} push {{origin}} {{origin}}:refs/heads/{{branch}}", values)
+			sh("{{git}} push {{origin}} {{branch}}:refs/heads/{{branch}}", values)
 			sh("{{git}} fetch {{origin}}", values)
 			sh("{{git}} config branch.{{branch}}.remote {{branch}}", values)
 			sh("{{git}} config branch.{{branch}}.merge refs/heads/{{branch}}", values)
