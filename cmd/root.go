@@ -30,7 +30,9 @@ func Execute() {
 	}
 }
 
-func sh(cmd string) {
+func sh(cmd string, args ...interface{}) {
+	cmd = fmt.Sprintf(cmd, args...)
+
 	fmt.Println("command is ", cmd)
 	// splitting head => g++ parts => rest of the command
 	parts := strings.Fields(cmd)
@@ -39,11 +41,12 @@ func sh(cmd string) {
 
 	out, err := exec.Command(head, parts...).Output()
 	if err != nil {
-		fmt.Printf("%s", err)
+		fmt.Printf("%s: ", err)
 	}
-	fmt.Printf("%s", out)
+	fmt.Printf("%s\n", out)
 }
 
 func getCurrentBranch() string {
-	return ""
+	branch, _ := exec.Command(GitCmd, "rev-parse", "--abbrev-ref", "HEAD").Output()
+	return strings.TrimSpace(string(branch))
 }
