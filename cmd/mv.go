@@ -20,7 +20,7 @@ func init() {
 
 			values := map[string]string{"branch1": branch1, "branch2": branch2}
 
-			sh("{{git}} push {{origin}} {{origin}}:refs/heads/{{branch}}", values)
+			sh("{{git}} push {{origin}} {{branch1}}:refs/heads/{{branch2}}", values)
 			sh("{{git}} fetch {{origin}}", values)
 			sh("{{git}} branch --track {{branch2}} {{origin}}/{{branch2}}", values)
 			sh("{{git}} checkout {{branch2}}", values)

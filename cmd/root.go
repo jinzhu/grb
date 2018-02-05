@@ -88,3 +88,9 @@ func getCurrentBranch() string {
 	branch, _ := exec.Command(GitCmd, "rev-parse", "--abbrev-ref", "HEAD").Output()
 	return strings.TrimSpace(string(branch))
 }
+
+func hasLocalBranch(branch string) bool {
+	result, _ := exec.Command(GitCmd, "branch", "--list", branch).Output()
+	fmt.Println(string(result))
+	return strings.TrimSpace(string(result)) != ""
+}
