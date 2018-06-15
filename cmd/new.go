@@ -14,8 +14,7 @@ func init() {
 			values := map[string]string{"branch": args[0]}
 
 			sh("{{git}} push {{origin}} {{current_branch}}:refs/heads/{{branch}}", values)
-			sh("{{git}} fetch {{origin}}", values)
-			sh("{{git}} branch --track {{branch}} {{origin}}:{{branch}}", values)
+			sh("{{git}} fetch {{origin}} {{branch}}:{{branch}}", values)
 			sh("{{git}} checkout {{branch}}", values)
 		},
 	})
