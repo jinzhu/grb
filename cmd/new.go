@@ -16,6 +16,7 @@ func init() {
 			sh("{{git}} push {{origin}} {{current_branch}}:refs/heads/{{branch}}", values)
 			sh("{{git}} fetch {{origin}} {{branch}}:{{branch}}", values)
 			sh("{{git}} checkout {{branch}}", values)
+			sh("{{git}} branch --set-upstream-to {{origin}}/{{branch}}", values)
 		},
 	})
 }
