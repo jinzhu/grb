@@ -21,9 +21,9 @@ func init() {
 			values := map[string]string{"branch1": branch1, "branch2": branch2}
 
 			sh("{{git}} push {{origin}} {{branch1}}:refs/heads/{{branch2}}", values)
-			sh("{{git}} fetch {{origin}}", values)
-			sh("{{git}} branch --track {{branch2}} {{origin}}/{{branch2}}", values)
+			sh("{{git}} fetch {{origin}} {{branch2}}:{{branch2}}", values)
 			sh("{{git}} checkout {{branch2}}", values)
+			sh("{{git}} branch --set-upstream-to {{origin}}/{{branch2}}", values)
 			sh("{{git}} branch -d {{branch1}}", values)
 			sh("{{git}} push {{origin}} :refs/heads/{{branch1}}", values)
 		},
