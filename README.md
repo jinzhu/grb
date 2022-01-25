@@ -5,7 +5,7 @@ A tool to simplify working with git remote branches.
 ## Install
 
 ```sh
-go install github.com/jinzhu/grb
+go install github.com/jinzhu/grb@latest
 ```
 
 ## Usage
